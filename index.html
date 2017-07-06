@@ -32,10 +32,8 @@
 
 <body>
   <header>
-    <h1 class='evaline happy' id='mainStatus'>All systems operational.</h1>
-    <p id='mainStatusMessage'>
-      Write the status message here about what's going on.
-    </p>
+    <h1 class='evaline happy' id='mainStatus'></h1>
+    <p id='mainStatusMessage'></p>
     <div class='button-row'>
       <a class='button' title='Report an issue' href='#'>
         Report an issue
@@ -62,13 +60,13 @@
       <div>Calendar integration</div>
       <div id='calendar-description'>All systems nominal</div>
     </div>
-    <div id='sms' class='error'>
+    <div id='sms'>
       <div>SMS notifications</div>
-      <div id='sms-description'>SMS notifications provider offline, we're working on a fix.</div>
+      <div id='sms-description'></div>
     </div>
-    <div id='email' class='warning'>
+    <div id='email'>
       <div>Email notifications</div>
-      <div id='email-description'>Some reports of email delivery failures, engineering team is investigating.</div>
+      <div id='email-description'></div>
     </div>
   </section>
 </body>
@@ -78,16 +76,46 @@
     // Write a general status message here.
     const generalMessage = `We're experiencing some notification issues, but are working with our API partners to resolve them. We expect to be fully operational within the hour.`
 
-    let desc = document.querySelector('[name=description]')
-    let status = 0 // status 0 = green, 1 = yellow, 2 = red
-    let services = document.getElementById('services').childNodes
-    for (let service of services) {
-      if (service.className === 'warning') {
-        if (status === 0) status = 1
-      } else if (service.className === 'error') status = 2
+    const services = {
+      scheduler: {
+        status: 0,
+        message: `All systems nominal`
+      },
+      driver: {
+        status: 0,
+        message: `All systems nominal`
+      },
+      admin: {
+        status: 0,
+        message: `All systems nominal`
+      },
+      calendar: {
+        status: 0,
+        message: `All systems nominal`
+      },
+      sms: {
+        status: 2,
+        message: `SMS notifications provider offline, we're working on a fix.`
+      },
+      email: {
+        status: 1,
+        message: `Some reports of email delivery failures, engineering team is investigating.`
+      }
     }
 
-    switch (status) {
+    let generalStatus = 0 // status 0 = green, 1 = yellow, 2 = red
+    for (let service in services) {
+      const status = services[service].status
+      const message = services[service].message
+      let elem = document.getElementById(service)
+      if (status === 1) { elem.className = 'warning' }
+      if (status === 2) { elem.className = 'error' }
+      document.getElementById(`${service}-description`).innerHTML = message
+      if (status > generalStatus) generalStatus = status
+    }
+
+    let desc = document.querySelector('[name=description]')
+    switch (generalStatus) {
       case 2: {
         const title = 'experiencing issues'
         document.title = `Evaline status: ${title}`
@@ -109,7 +137,7 @@
         document.title = `Evaline status: ${title}`
         desc.content = `Evaline status: ${title}`
         document.getElementById('mainStatus').innerHTML = title
-        document.getElementById('mainStatusMessage') = ''
+        document.getElementById('mainStatusMessage').innerHTML = `All is well. If you're having an error, send a message to support@evaline.io, and we'll help you out.`
       }
     }
   }
