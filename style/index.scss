@@ -1,46 +1,99 @@
 @import 'reset';
 @import 'mixins';
 @import 'animations';
-@import url('https://fonts.googleapis.com/css?family=Fjord+One|Istok+Web');
+@import url('https://fonts.googleapis.com/css?family=Rubik|Source+Code+Pro');
 
-$shadow: #000000;
-$black:  #101010;
-$grey90: #1C1C1C;
-$grey85: #262626;
-$grey75: #C3C3C3;
-$white:  #FFFFFF;
-$title-font-family: 'Istok Web', sans-serif;
-$body-font-family: 'Fjord One', serif;
+$brightwhite: #FFF;
+$white:    #F7F7F7;
+$grey00:   #EEEEEE;
+$grey10:   #E5E5E5;
+$grey20:   #D7D7D7;
+$grey30:   #BABABA;
+$grey50:   #969696;
+$grey70:   #6D6D6D;
+$grey80:   #4C4C4C;
+$grey90:   #333333;
+$black:    #1B1B1B;
+
+$yellow40: #FFB828;
+$yellow60: #DB9D23;
+
+$blue20:   #9CD1F4;
+$blue40:   #4BB0F4;
+$blue60:   #2890D4;
+
+$evgreen:  #27DD7E;
+$green50:  #1EC970;
+$green60:  #1AB565;
+$green70:  #12874B;
+$green90:  #0C4427;
+
+$red40:    #DE2626;
+$red60:    #C01A19;
+
+$font-family: 'Rubik', 'Open Sans', 'Helvetica', sans-serif;
+$mono-font-family: 'Source Code Pro', monospace;
+$base-font: 18px/24px $font-family;
+
 
 body {
-  color: $white;
-  background: $black;
-  font-family: $body-font-family;
-  font-size: 20px;
+  color: $black;
+  background: $white;
+  font-family: $font-family;
+  font-size: 16px;
   line-height: 1.75em;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $title-font-family;
+  font-family: $font-family;
 }
 
 h1 {
-  font-size: 1.5em;
-  line-height: 1.875em;
+  font-size: 2em;
+  line-height: 2.125em;
+  position: relative;
+}
+
+h1.evaline {
+  &::before {
+    content: '';
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    transform: translateY(-50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: -2.25em;
+    top: calc(50% - 1em);
+
+    @include animation-delay(0.375s);
+    @include animate(0.5s);
+    @extend .fadeInLeft;
+  }
+
+  &.happy::before {
+    background-image: url('../media/evaline-happy.png');
+  }
+
+  &.upset::before {
+    background-image: url('../media/evaline-upset.png');
+  }
 }
 
 p {
-  color: $grey75;
+  color: $grey70;
   max-width: 20em;
+  font-size: 1.25em;
 
   .no-break { white-space:nowrap; }
 
   a {
-    color: $grey75;
+    color: $grey70;
     @include ease(0.25s);
-    text-decoration: underline;
+    text-decoration: none;
     &:hover { color: $white; }
   }
 }
@@ -50,7 +103,10 @@ svg { fill: red; }
 header {
   padding: 2em;
   height: calc(100vh - 4em);
+  max-width: 32em;
   display: flex;
+  margin: 0 auto;
+  flex-shrink: 1;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
@@ -63,43 +119,54 @@ header {
 }
 
 .button-row {
-  margin-top: 1em;
+  margin-top: 2em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
 
-  > a {
+  > a.button {
     cursor: pointer;
     position: relative;
+    font-family: $mono-font-family;
+    font-size: 1.125em;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
-    @include shadow(0, 0, 0.5em, 0, rgba($shadow, 0));
+    @include shadow(0, 0, 0.5em, 0, rgba($black, 0));
     @include ease(0.25s);
     box-sizing: border-box;
-    display: inline-block;
-    padding: 0.25em 2em;
-    height: 2em;
-    background: $grey90;
-    color: $grey75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 1;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 0.5em 1.5em;
+    background: $black;
+    color: $white;
 
     svg {
       height: 1em;
       width: 1em;
-      fill: $grey75;
+      fill: $grey70;
     }
 
-    & + a { margin-left: 0.25em; }
+    & + a { margin-left: 1em; }
 
     &:hover {
-      @include shadow(0, 0.1em, 0.5em, 0, $shadow);
+      @include shadow(0, 0.1em, 0.5em, 0, rgba($black, 0.25));
       transform: translate3d(0, -0.1em, 0);
       -webkit-transform: translate3d(0, -0.1em, 0);
-      background: $grey85;
+      background: $grey90;
     }
 
     &:active {
       @include ease(0.1s);
-      @include shadow(0, 0, 0.25em, 0, $shadow);
+      @include shadow(0, 0, 0.25em, 0, rgba($black, 0.125));
       transform: translate3d(0, 0.1em, 0);
       -webkit-transform: translate3d(0, 0.1em, 0);
-      background: $grey85;
+      background: $grey80;
     }
 
     @extend .fadeInUp;
@@ -125,7 +192,7 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: $grey85;
+      background: $grey80;
       color: $white;
     }
 

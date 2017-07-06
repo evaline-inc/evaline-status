@@ -21,3 +21,22 @@
   animation-name: fadeInUp;
   -webkit-animation-name: fadeInUp;
 }
+
+
+@include keyframes('fadeInLeft') {
+  0% {
+    opacity: 0;
+    transform: translate3d(1em, 0, 0);
+    -webkit-transform: translate3d(1em, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+  -webkit-animation-name: fadeInLeft;
+}

@@ -32,7 +32,7 @@
 
 <body>
   <header>
-    <h1>All systems operational!</h1>
+    <h1 class='evaline happy'>All systems operational.</h1>
     <p>Write the status message here about what's going on.</p>
     <div class='button-row'>
       <a class='button' title='Report an issue' href='#'>
@@ -58,26 +58,26 @@
 
     switch (status) {
       case 'yellow': {
-        const humanReadableStatus = 'Evaline Status: experiencing issues'
-        if (document.title != humanReadableStatus) {
-          document.title = humanReadableStatus
-          desc.content = humanReadableStatus
+        const title = 'Evaline Status: experiencing issues'
+        if (document.title != title) {
+          document.title = title
+          desc.content = title
         }
 
       } break
       case 'red': {
-        const humanReadableStatus = 'Evaline Status: some problems detected'
-        if (document.title != humanReadableStatus) {
-          document.title = humanReadableStatus
-          desc.content = humanReadableStatus
+        const title = 'Evaline Status: some problems detected'
+        if (document.title != title) {
+          document.title = title
+          desc.content = title
         }
 
       } break
       default: {
-        const humanReadableStatus = 'Evaline Status: All systems operational'
-        if (document.title != humanReadableStatus) {
-          document.title = humanReadableStatus
-          desc.content = humanReadableStatus
+        const title = 'Evaline Status: All systems operational'
+        if (document.title != title) {
+          document.title = title
+          desc.content = title
 
         }
       }
