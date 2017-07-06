@@ -1,9 +1,12 @@
 dependencies:
   override:
     - npm i now
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
 
 deployment:
   production:
     branch: master
     commands:
-      - now -- --alias status.evaline.io -t $NOW_TOKEN
+      - yarn now --alias status.evaline.io -t $NOW_TOKEN
