@@ -1,0 +1,16 @@
+machine:
+  node:
+    version: 6.9.0
+
+dependencies:
+  override:
+    - yarn
+    - now
+  cache_directories:
+    - ~/.cache/yarn
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - yarn now --alias status.evaline.io --token $NOW_TOKEN
