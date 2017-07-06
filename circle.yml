@@ -1,6 +1,5 @@
 dependencies:
   override:
-    - npm i now
     - yarn
   cache_directories:
     - ~/.cache/yarn
