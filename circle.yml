@@ -8,4 +8,5 @@ deployment:
   production:
     branch: master
     commands:
-      - yarn now -- --alias status.evaline.io --static -t $NOW_TOKEN
+      - yarn now -- --static -t $NOW_TOKEN
+      - yarn now alias status.evaline.io
