@@ -45,7 +45,7 @@
         Get updates
       </a>
   </header>
-  <section>
+  <section id='services'>
     <div id='scheduler'>
       <div>Session Scheduling</div>
       <div id='scheduler-description'>All systems nominal</div>
@@ -75,36 +75,41 @@
 
 <script>
   window.onload = function () {
-    // const status = 'green'
-    const status = 'yellow'
-    // const status = 'red'
+    // Write a general status message here.
+    const generalMessage = `We're experiencing some notification issues, but are working with our API partners to resolve them. We expect to be fully operational within the hour.`
 
     let desc = document.querySelector('[name=description]')
+    let status = 0 // status 0 = green, 1 = yellow, 2 = red
+    let services = document.getElementById('services').childNodes
+    for (let service of services) {
+      if (service.className === 'warning') {
+        if (status === 0) status = 1
+      } else if (service.className === 'error') status = 2
+    }
 
     switch (status) {
-      case 'yellow': {
-        const title = 'Evaline Status: experiencing issues'
-        if (document.title != title) {
-          document.title = title
-          desc.content = title
-        }
-
+      case 2: {
+        const title = 'experiencing issues'
+        document.title = `Evaline status: ${title}`
+        desc.content = `Evaline status: ${title}`
+        document.getElementById('mainStatus').innerHTML = title
+        document.getElementById('mainStatus').className = 'evaline upset'
+        document.getElementById('mainStatusMessage').innerHTML = generalMessage
       } break
-      case 'red': {
-        const title = 'Evaline Status: some problems detected'
-        if (document.title != title) {
-          document.title = title
-          desc.content = title
-        }
-
+      case 1: {
+        const title = 'some problems detected'
+        document.title = `Evaline status: ${title}`
+        desc.content = `Evaline status: ${title}`
+        document.getElementById('mainStatus').innerHTML = title
+        document.getElementById('mainStatus').className = 'evaline upset'
+        document.getElementById('mainStatusMessage').innerHTML = generalMessage
       } break
       default: {
-        const title = 'Evaline Status: All systems operational'
-        if (document.title != title) {
-          document.title = title
-          desc.content = title
-
-        }
+        const title = 'all systems operational'
+        document.title = `Evaline status: ${title}`
+        desc.content = `Evaline status: ${title}`
+        document.getElementById('mainStatus').innerHTML = title
+        document.getElementById('mainStatusMessage') = ''
       }
     }
   }
