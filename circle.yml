@@ -4,9 +4,13 @@ dependencies:
   cache_directories:
     - ~/.cache/yarn
 
+test:
+  override:
+    - yarn standard
+
 deployment:
   production:
     branch: master
     commands:
       - yarn now -- --static -t $NOW_TOKEN
-      - yarn now alias status.evaline.io
+      - now alias status.evaline.io
