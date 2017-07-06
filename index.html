@@ -32,8 +32,10 @@
 
 <body>
   <header>
-    <h1 class='evaline happy'>All systems operational.</h1>
-    <p>Write the status message here about what's going on.</p>
+    <h1 class='evaline happy' id='mainStatus'>All systems operational.</h1>
+    <p id='mainStatusMessage'>
+      Write the status message here about what's going on.
+    </p>
     <div class='button-row'>
       <a class='button' title='Report an issue' href='#'>
         Report an issue
@@ -44,14 +46,37 @@
       </a>
   </header>
   <section>
-
+    <div id='scheduler'>
+      <div>Session Scheduling</div>
+      <div id='scheduler-description'>All systems nominal</div>
+    </div>
+    <div id='driver'>
+      <div>Driver Application</div>
+      <div id='driver-description'>All systems nominal</div>
+    </div>
+    <div id='admin'>
+      <div>Admin Application</div>
+      <div id='admin-description'>All systems nominal</div>
+    </div>
+    <div id='calendar'>
+      <div>Calendar integration</div>
+      <div id='calendar-description'>All systems nominal</div>
+    </div>
+    <div id='sms' class='error'>
+      <div>SMS notifications</div>
+      <div id='sms-description'>SMS notifications provider offline, we're working on a fix.</div>
+    </div>
+    <div id='email' class='warning'>
+      <div>Email notifications</div>
+      <div id='email-description'>Some reports of email delivery failures, engineering team is investigating.</div>
+    </div>
   </section>
 </body>
 
 <script>
   window.onload = function () {
-    const status = 'green'
-    // const status = 'yellow'
+    // const status = 'green'
+    const status = 'yellow'
     // const status = 'red'
 
     let desc = document.querySelector('[name=description]')
