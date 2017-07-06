@@ -8,4 +8,4 @@ deployment:
   production:
     branch: master
     commands:
-      - yarn now --static -c ~/.now.json
+      - yarn now -- --static -c ~/.now.json
