@@ -14,5 +14,5 @@ deployment:
   production:
     branch: master
     commands:
-      - now -t ${NOW_TOKEN}
-      - now -t ${NOW_TOKEN} alias status.evaline.io
+      - URL=$(now --static -t ${NOW_TOKEN})
+      - now -t ${NOW_TOKEN} alias set ${URL} status.evaline.io
