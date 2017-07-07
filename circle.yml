@@ -13,4 +13,4 @@ deployment:
     branch: master
     commands:
       - URL=$(now -- --static -t ${NOW_TOKEN})
-      - now -t ${NOW_TOKEN} alias set ${URL} status.evaline.io
+      - yarn now -t ${NOW_TOKEN} alias set ${URL} status.evaline.io
