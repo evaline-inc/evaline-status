@@ -80,45 +80,51 @@
     const services = {
       scheduler: {
         status: 0,
-        message: `All systems nominal`
+        message: ``
       },
       driver: {
         status: 0,
-        message: `All systems nominal`
+        message: ``
       },
       admin: {
         status: 0,
-        message: `All systems nominal`
+        message: ``
       },
       calendar: {
         status: 0,
-        message: `All systems nominal`
+        message: ``
       },
       sms: {
         status: 0,
-        message: `All systems nominal`
+        message: ``
       },
       email: {
         status: 0,
-        message: `All systems nominal`
+        message: ``
       }
     }
 
+		let nominalArr = ['System nominal', 'No errors reported', 'Fully operational', 'Nothing to report']
+		let nominal = nominalArr[Math.floor(Math.random() * nominalArr.length)]
     let generalStatus = 0 // status 0 = green, 1 = yellow, 2 = red
-    for (let service in services) {
+
+		for (let service in services) {
       const status = services[service].status
-      const message = services[service].message
-      let elem = document.getElementById(service)
+      let message = services[service].message
+
+			let elem = document.getElementById(service)
       if (status === 1) { elem.className = 'warning' }
       if (status === 2) { elem.className = 'error' }
-      document.getElementById(`${service}-description`).innerHTML = message
+			if (message === '' && status === 0) message = nominal
       if (status > generalStatus) generalStatus = status
+
+			document.getElementById(`${service}-description`).innerHTML = message
     }
 
     let desc = document.querySelector('[name=description]')
     switch (generalStatus) {
       case 2: {
-        const title = 'experiencing issues'
+        const title = `some systems offline`
         document.title = `Evaline status: ${title}`
         desc.content = `Evaline status: ${title}`
         document.getElementById('mainStatus').innerHTML = title
@@ -126,7 +132,7 @@
         document.getElementById('mainStatusMessage').innerHTML = generalMessage
       } break
       case 1: {
-        const title = 'some problems detected'
+        const title = `partial outage`
         document.title = `Evaline status: ${title}`
         desc.content = `Evaline status: ${title}`
         document.getElementById('mainStatus').innerHTML = title
@@ -134,7 +140,7 @@
         document.getElementById('mainStatusMessage').innerHTML = generalMessage
       } break
       default: {
-        const title = 'all systems operational'
+        const title = `all systems operational`
         document.title = `Evaline status: ${title}`
         desc.content = `Evaline status: ${title}`
         document.getElementById('mainStatus').innerHTML = title
