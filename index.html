@@ -75,7 +75,7 @@
 <script>
   window.onload = function () {
     // Write a general status message here.
-    const generalMessage = `We're experiencing some notification issues, but are working with our API partners to resolve them. We expect to be fully operational within the hour.`
+    const generalMessage = `We're experiencing some difficulty with Scaphold, our backend + database provider. We'll keep this page updated as the situation evolves, but this issue should be resolved within the hour.`
 
     const services = {
       scheduler: {
@@ -83,12 +83,12 @@
         message: ``
       },
       driver: {
-        status: 0,
-        message: ``
+        status: 2,
+        message: `Offline, waiting on our database provider.`
       },
       admin: {
-        status: 0,
-        message: ``
+        status: 2,
+        message: `Offline, waiting on our database provider.`
       },
       calendar: {
         status: 0,
