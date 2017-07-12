@@ -104,21 +104,21 @@
       }
     }
 
-		let nominalArr = ['System nominal', 'No errors reported', 'Fully operational', 'Nothing to report']
-		let nominal = nominalArr[Math.floor(Math.random() * nominalArr.length)]
+    let nominalArr = ['System nominal', 'No errors reported', 'Fully operational', 'Nothing to report']
+    let nominal = nominalArr[Math.floor(Math.random() * nominalArr.length)]
     let generalStatus = 0 // status 0 = green, 1 = yellow, 2 = red
 
-		for (let service in services) {
+    for (let service in services) {
       const status = services[service].status
       let message = services[service].message
 
-			let elem = document.getElementById(service)
+      let elem = document.getElementById(service)
       if (status === 1) { elem.className = 'warning' }
       if (status === 2) { elem.className = 'error' }
-			if (message === '' && status === 0) message = nominal
+      if (message === '' && status === 0) message = nominal
       if (status > generalStatus) generalStatus = status
 
-			document.getElementById(`${service}-description`).innerHTML = message
+      document.getElementById(`${service}-description`).innerHTML = message
     }
 
     let desc = document.querySelector('[name=description]')
