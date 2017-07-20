@@ -75,7 +75,7 @@
 <script>
   window.onload = function () {
     // Write a general status message here.
-    const generalMessage = `We're experiencing some difficulty the latest deployment of the Driver app. Some scheduling is affected. A fix should be out within the hour.`
+    const generalMessage = `We believe scheduling sessions manually in the Driver application may be temporarily affected. A fix should be out within the hour.`
 
     const services = {
       scheduler: {
@@ -83,8 +83,8 @@
         message: ``
       },
       driver: {
-        status: 0,
-        message: ``
+        status: 1,
+        message: `Some problems detected with scheduling.`
       },
       admin: {
         status: 0,
