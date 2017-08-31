@@ -75,7 +75,7 @@
 <script>
   window.onload = function () {
     // Write a general status message here.
-    const generalMessage = `Alles klär`
+    const generalMessage = `Scaphold, our database provider, has gone completely dark within the next 24 hours. We're working on a migration to a new provider, but the best we can do currently is to wait for them to come back online. Thanks for your patience.`
 
     const services = {
       scheduler: {
@@ -83,12 +83,12 @@
         message: ``
       },
       driver: {
-        status: 0,
-        message: ``
+        status: 2,
+        message: `unavailable due to database outage`
       },
       admin: {
-        status: 0,
-        message: ``
+        status: 2,
+        message: `unavailable due to database outage`
       },
       calendar: {
         status: 0,
@@ -106,7 +106,7 @@
 
     let nominalArr = ['System nominal', 'No errors reported', 'Fully operational', 'Nothing to report']
     let nominal = nominalArr[Math.floor(Math.random() * nominalArr.length)]
-    let generalStatus = 0 // status 0 = green, 1 = yellow, 2 = red
+    let generalStatus = 2 // status 0 = green, 1 = yellow, 2 = red
 
     for (let service in services) {
       const status = services[service].status
