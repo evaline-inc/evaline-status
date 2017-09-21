@@ -1,5 +1,5 @@
 # evaline-status
-Head over to [status.evaline.io](status.evaline.io) for the live version.
+Head over to [status.evaline.io](http://status.evaline.io) for the live version.
 
 Having issues? Send an email to [support@evaline.io](support@evaline.io) and we'll help you out.
 
