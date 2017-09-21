@@ -106,7 +106,7 @@
 
     let nominalArr = ['System nominal', 'No errors reported', 'Fully operational', 'Nothing to report']
     let nominal = nominalArr[Math.floor(Math.random() * nominalArr.length)]
-    let generalStatus = 2 // status 0 = green, 1 = yellow, 2 = red
+    let generalStatus = 0 // status 0 = green, 1 = yellow, 2 = red
 
     for (let service in services) {
       const status = services[service].status
